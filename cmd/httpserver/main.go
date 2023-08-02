@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sembh1998/wedding_invitation_generation/internal/core/services/guestssrv"
 	"github.com/sembh1998/wedding_invitation_generation/internal/core/services/userssrv"
+	"github.com/sembh1998/wedding_invitation_generation/internal/handlers/frontend"
 	"github.com/sembh1998/wedding_invitation_generation/internal/handlers/guesthdl"
 	"github.com/sembh1998/wedding_invitation_generation/internal/handlers/tokenrequired"
 	"github.com/sembh1998/wedding_invitation_generation/internal/handlers/userhdl"
@@ -41,7 +42,23 @@ func main() {
 	guestService := guestssrv.New(guestRepository)
 	guestHandler := guesthdl.New(guestService)
 
+	frontendHandler := frontend.New(guestService, userService)
+
 	router := gin.Default()
+
+	router.GET("/", frontendHandler.LoginHTMX)
+	router.POST("/login", frontendHandler.Login)
+	router.GET("/crudguests", tokenrequired.TokenRequiredMiddleware(), frontendHandler.CrudGuestsHTMX)
+	//post add-guest
+	router.POST("/add-guest", tokenrequired.TokenRequiredMiddleware(), frontendHandler.AddGuest)
+	//delete delete-guest
+	router.DELETE("/delete-guest/:id", tokenrequired.TokenRequiredMiddleware(), frontendHandler.DeleteGuest)
+
+	//get guest
+	router.GET("/guest/:id", frontendHandler.FetchGuestHTMX)
+
+	//post attend
+	router.POST("/guest/:id/attend", frontendHandler.AttendConfirmation)
 
 	v1 := router.Group("/api/v1")
 
