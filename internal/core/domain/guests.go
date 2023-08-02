@@ -2,9 +2,12 @@ package domain
 
 type Guest struct {
 	BaseModel
-	Name           string `json:"name"`
-	LastName       string `json:"last_name"`
-	WillAttend     bool   `json:"will_attend"`
-	SpecialMessage string `json:"special_message" gorm:"type:text"`
-	Response       string `json:"response" gorm:"type:text"`
+	Name           string `form:"name"`
+	LastName       string `form:"last_name"`
+	WillAttend     int    `form:"will_attend"`
+	SpecialMessage string `gorm:"type:text" form:"special_message"`
+	Response       string `gorm:"type:text" form:"response"`
+	// foriegn key to user
+	CreatedBy string
+	User      User `gorm:"foreignKey:CreatedBy"`
 }

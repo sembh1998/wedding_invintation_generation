@@ -8,7 +8,9 @@ type UserSrv interface {
 
 type GuestSrv interface {
 	FindGuests() ([]domain.Guest, error)
+	FetchGuest(id string) (domain.Guest, error)
 	CreateGuest(guest domain.Guest) (domain.Guest, error)
 	UpdateGuest(guest domain.Guest) (domain.Guest, error)
+	AttendConfirmation(id string, attend bool, response string) (domain.Guest, error)
 	DeleteGuest(id string) error
 }

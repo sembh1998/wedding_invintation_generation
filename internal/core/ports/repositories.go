@@ -8,6 +8,7 @@ type UserRepo interface {
 
 type GuestRepo interface {
 	FindGuests() ([]domain.Guest, error)
+	FetchGuest(id string) (domain.Guest, error)
 	CreateGuest(guest domain.Guest) (domain.Guest, error)
 	UpdateGuest(guest domain.Guest) (domain.Guest, error)
 	DeleteGuest(id string) error
