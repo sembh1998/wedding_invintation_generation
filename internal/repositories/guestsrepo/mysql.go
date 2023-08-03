@@ -20,7 +20,7 @@ func NewGuestMysql(conn *gorm.DB) ports.GuestRepo {
 
 func (u *GuestMysql) FindGuests() ([]domain.Guest, error) {
 	var guests []domain.Guest
-	err := u.Conn.Find(&guests).Error
+	err := u.Conn.Joins("User").Find(&guests).Error
 	if err != nil {
 		return []domain.Guest{}, err
 	}
@@ -29,7 +29,7 @@ func (u *GuestMysql) FindGuests() ([]domain.Guest, error) {
 
 func (u *GuestMysql) FetchGuest(id string) (domain.Guest, error) {
 	var guest domain.Guest
-	err := u.Conn.First(&guest, "id = ?", id).Error
+	err := u.Conn.Joins("User").First(&guest, "guests.id = ?", id).Error
 	if err != nil {
 		return domain.Guest{}, err
 	}
