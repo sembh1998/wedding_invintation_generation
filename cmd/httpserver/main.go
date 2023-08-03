@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sembh1998/wedding_invitation_generation/cmd/bootstrap"
 	"github.com/sembh1998/wedding_invitation_generation/internal/core/services/guestssrv"
 	"github.com/sembh1998/wedding_invitation_generation/internal/core/services/userssrv"
 	"github.com/sembh1998/wedding_invitation_generation/internal/handlers/frontend"
@@ -27,6 +28,10 @@ const (
 )
 
 func main() {
+
+	if err := bootstrap.ExtractEmbeddedFile(); err != nil {
+		panic(err)
+	}
 
 	connstring := fmt.Sprintf(format, user, password, host, port, dbname)
 	mysqlgorm, err := gorm.Open(mysql.Open(connstring), &gorm.Config{})
