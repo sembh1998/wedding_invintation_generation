@@ -82,5 +82,5 @@ func (h *HTTPHandler) AttendConfirmation(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.Header("HX-Redirect", "/guests/"+id)
+	c.Header("HX-Redirect", "/guest/"+id)
 }

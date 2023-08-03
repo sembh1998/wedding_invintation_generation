@@ -7,243 +7,288 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitacion de {{.guest.Name}}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://unpkg.com/htmx.org@1.9.2"
-      integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
-      crossorigin="anonymous"></script>
+    integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="rsvp-container">
-        <div class="rsvp-inner-container">
-            <h1>
-                De: Maquera Josue & Alvarado Helen
-            </h1>
-            <h2></h2>
-            <h2>Para: {{.guest.LastName}} {{.guest.Name}}</h2>
-            <h2></h2>
-            <h2>
-                Ven y forma parte de mi evento canonico, de mi desarrollo de personaje
-            </h2>
-            <h2></h2>
-            <h1>
-                ME CASO !!!!
-            </h1>
-            <h2></h2>
-            <h2>
-                {{.guest.SpecialMessage}}
-            </h2>
-            <h2></h2>
-            <h1>
-                Costo de entrada s/200
-            </h1>
-            <h2></h2>
-            <h2>
-                una boda no es barata, suelta suelta nomas
-            </h2>
-            
-        </div>
+  <div class="rsvp-container">
+    <div class="rsvp-inner-container">
+      <h1>
+        De: Josue Maquera & Hellen Alvarado
+      </h1>
+      <h2></h2>
+      <h2>Para: {{.guest.LastName}} {{.guest.Name}}</h2>
+
+
+      <h2></h2>
+      <h2>
+        {{.guest.SpecialMessage}}
+      </h2>
+
+
     </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="col-md-4">
+    <h1 class="mb-4 text-primary">¿Podras Asistir?</h1>
+
+    <form hx-post="/guest/{{.guest.ID}}/attend" hx-indicator="#spinner">
+      <div class="mb-3">
+        <label for="guest-attend" class="form-label">Confirmación</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="attend-yes" value="true" 
+          {{ if eq .guest.WillAttend 1 }} checked {{ end }} onclick="podraasistir('true')">
+          <label class="form-check-label" for="attend-yes">
+            Si Podre Asistir
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="attend-no" value="false" 
+          {{ if eq .guest.WillAttend 0 }} checked {{ end }} onclick="podraasistir('false')">
+          <label class="form-check-label" for="attend-no">
+            No Podre Asistir
+          </label>
+        </div>
+        <!-- Hidden input field for 'attend' -->
+        <input id="attend" type="hidden" name="attend"
+          value="{{ if eq .WillAttend 1 }}true{{ else }}false{{ end }}" />
+      </div>
+      <div class="mb-3">
+        <label for="guest-response" class="form-label">Mensaje para los novios</label>
+        <textarea class="form-control" name="response" id="guest-response" rows="3">{{.guest.Response}}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="spinner-border spinner-border-sm htmx-indicator" id="spinner" role="status"
+          aria-hidden="true"></span>
+        Enviar Respuesta
+      </button>
+    </form>
+
+
+  </div>
+  
+  <!-- Agregar el script de Bootstrap JS aquí -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const podraasistir = async (answer) => {
+      console.log(answer);
+      document.getElementById('attend').value = answer;
+    }
+  </script>
 </body>
 
 <style>
-    @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600&display=swap");
 
-body {
-  display: grid;
-  height: 100vh;
-  width: 100vw;
-  justify-items: center;
-  align-items: center;
-  font-family: "Cormorant Garamond", serif;
-  background: #D6D3D4;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-.rsvp-container {
-  margin: 0 auto;
-  height: 700px;
-  width: 500px;
-  background: #D6D3D4;
-  position: relative;
-  z-index: 1;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-.rsvp-container:after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 600px;
-  left: 50px;
-  top: 50px;
-  background: #fff;
-  z-index: 1;
-}
-.rsvp-container:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-1230248-png.png") center center no-repeat;
-  background-size: cover;
-  z-index: 3;
-}
+  body {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    justify-items: center;
+    align-items: center;
+    font-family: "Cormorant Garamond", serif;
+    background: #D6D3D4;
+  }
 
-.rsvp-inner-container {
-  position: relative;
-  z-index: 4;
-  padding: 130px;
-}
+  .rsvp-container {
+    margin: 0 auto;
+    height: 700px;
+    width: 500px;
+    background: #D6D3D4;
+    position: relative;
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  }
 
-h1 {
-  font-size: 28px;
-  font-weight: semi-bold;
-  margin: 30px 0 5px 0;
-}
+  .rsvp-container:after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    left: 50px;
+    top: 50px;
+    background: #fff;
+    z-index: 1;
+  }
 
-h2 {
-  font-size: 18px;
-  margin: 0 0 20px 0;
-  font-weight: normal;
-}
+  .rsvp-container:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-1230248-png.png") center center no-repeat;
+    background-size: cover;
+    z-index: 3;
+  }
 
-fieldset {
-  border: 0;
-  margin-bottom: 20px;
-}
+  .rsvp-inner-container {
+    position: relative;
+    z-index: 4;
+    padding: 130px;
+  }
 
-.full-width label:nth-of-type(1) {
-  display: block;
-  font-size: 18px;
-}
+  h1 {
+    font-size: 28px;
+    font-weight: semi-bold;
+    margin: 30px 0 5px 0;
+  }
 
-.full-width input {
-  border: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  width: 100%;
-  line-height: 28px;
-  font-size: 14px;
-  outline: none;
-  background: transparent;
-}
+  h2 {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    font-weight: normal;
+  }
 
-.half-width label {
-  display: inline-block;
-  margin-right: 20px;
-  line-height: 28px;
-  font-size: 18px;
-}
+  fieldset {
+    border: 0;
+    margin-bottom: 20px;
+  }
 
-.half-width input {
-  border: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  line-height: 28px;
-  font-size: 14px;
-  outline: none;
-  width: 70px;
-  text-align: center;
-}
+  .full-width label:nth-of-type(1) {
+    display: block;
+    font-size: 18px;
+  }
 
-.checkbox input {
-  border: 2px solid rgba(0, 0, 0, 0.5);
-  height: 28px;
-  width: 28px;
-  background-color: transparent !important;
-}
+  .full-width input {
+    border: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    width: 100%;
+    line-height: 28px;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+  }
 
-/* The container */
-.container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  line-height: 28px;
-}
+  .half-width label {
+    display: inline-block;
+    margin-right: 20px;
+    line-height: 28px;
+    font-size: 18px;
+  }
 
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+  .half-width input {
+    border: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    line-height: 28px;
+    font-size: 14px;
+    outline: none;
+    width: 70px;
+    text-align: center;
+  }
 
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 27px;
-  width: 27px;
-  background-color: inherit;
-  border: 2px solid rgba(0, 0, 0, 0.5);
-}
+  .checkbox input {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    height: 28px;
+    width: 28px;
+    background-color: transparent !important;
+  }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
+  /* The container */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 28px;
+  }
 
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: inherit;
-}
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 27px;
+    width: 27px;
+    background-color: inherit;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+  }
 
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
+  /* On mouse-over, add a grey background color */
+  .container:hover input~.checkmark {
+    background-color: #ccc;
+  }
 
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid rgba(0, 0, 0, 0.5);
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked~.checkmark {
+    background-color: inherit;
+  }
 
-button {
-  position: absolute;
-  bottom: 150px;
-  right: 140px;
-  background: transparent;
-  border: none;
-  padding: 5px;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 22px;
-  outline: none;
-}
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
 
-.diet {
-  width: 75% !important;
-}
+  /* Show the checkmark when checked */
+  .container input:checked~.checkmark:after {
+    display: block;
+  }
 
-input, button {
-  font-family: "Cormorant Garamond", serif;
-}
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid rgba(0, 0, 0, 0.5);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  button {
+    position: absolute;
+    bottom: 150px;
+    right: 140px;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 22px;
+    outline: none;
+  }
+
+  .diet {
+    width: 75% !important;
+  }
+
+  input,
+  button {
+    font-family: "Cormorant Garamond", serif;
+  }
 </style>
 
 </html>
