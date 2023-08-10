@@ -1,6 +1,7 @@
 package userhdl
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -34,7 +35,9 @@ func (h *HTTPHandler) Login(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
-	c.SetCookie("wedding_cookie", token, 3600*24, "/", "localhost", false, true)
+	domain := c.Request.Host
+	log.Println(domain)
+	c.SetCookie("wedding_cookie", token, 3600*24, "/", domain, false, true)
 
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
