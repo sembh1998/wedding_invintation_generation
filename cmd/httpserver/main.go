@@ -78,5 +78,5 @@ func main() {
 	//AttendConfirmation
 	v1.PUT("/guest/:id/attend", guestHandler.AttendConfirmation)
 
-	router.Run(":8080")
+	router.Run(":80")
 }
