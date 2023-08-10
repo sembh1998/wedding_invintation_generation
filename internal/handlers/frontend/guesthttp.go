@@ -25,17 +25,17 @@ func (h *HTTPHandler) AddGuest(c *gin.Context) {
 		return
 	}
 	user_id, _ := c.Get("user_id")
+	username, _ := c.Get("username")
 	guest.CreatedBy = user_id.(string)
+	guest.User.User = username.(string)
+	guest.User.ID = user_id.(string)
 
 	guest, err := h.guestSrv.CreateGuest(guest)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
-	tmpl := template.Must(template.ParseFiles("htmx/crudguests.html"))
-	tmpl.ExecuteTemplate(c.Writer, "guest-list-element", guest)
-
+	c.Header("HX-Redirect", "/crudguests")
 }
 
 // DeleteGuest

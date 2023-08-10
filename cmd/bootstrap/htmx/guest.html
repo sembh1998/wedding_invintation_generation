@@ -6,106 +6,110 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitacion de {{.guest.Name}}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://unpkg.com/htmx.org@1.9.2"
     integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Parisienne">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poppins">
 </head>
 
 <body>
-  <div class="rsvp-container">
-    <div class="rsvp-inner-container">
-      <h1>
-        𝓙𝓸𝓼𝓾𝓮 & 𝓗𝓮𝓵𝓵𝓮𝓷
-      </h1>
-      <h1>
-        ♡𝔍𝔬𝔰𝔲𝔢 & ℌ𝔢𝔩𝔩𝔢𝔫♡
-      </h1>
-      <h1>
-        ͟J͟o͟s͟u͟e͟ ͟&͟ ͟H͟e͟l͟l͟e͟n
-      </h1>
-      <h1>
-        ﾌㄖ丂ㄩ乇 & 卄乇ㄥㄥ乇几
-      </h1>
-      <h2></h2>
-      <h2>Para: {{.guest.LastName}} {{.guest.Name}}</h2>
-
-
-      <h2></h2>
-      <h2>
-        {{.guest.SpecialMessage}}
-      </h2>
-
-
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="mb-4 text-primary">¿Podras Asistir?</h1>
-
-      <form hx-post="/guest/{{.guest.ID}}/attend" hx-indicator="#spinner">
-        <div class="mb-3">
-          <label for="guest-attend" class="form-label">Confirmación</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="attend-yes" value="true" {{ if eq
-              .guest.WillAttend 1 }} checked {{ end }} onclick="podraasistir('true')">
-            <label class="form-check-label" for="attend-yes">
-              Si Podre Asistir
-            </label>
+  <main>
+    <section class="invitation">
+      <div class="up__image">
+        <img class="up" src="https://i.imgur.com/HuGiA0U.png" alt="">
+      </div>
+      <div class="content">
+        <div class="content__border">
+          <div class="invitation__content">
+            <h1 class="title">
+              Josué & Helen
+            </h1>
+            <div class="message__contain">
+              <h1 class="message">Para: {{.guest.LastName}} {{.guest.Name}}</h1>
+              <h2 class="message text">
+                {{ if .guest.SpecialMessage}}{{.guest.SpecialMessage}}{{ else }}Estás invitado a nuestra boda{{
+                end }}
+              </h2>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="attend-no" value="false" {{ if eq
-              .guest.WillAttend 0 }} checked {{ end }} onclick="podraasistir('false')">
-            <label class="form-check-label" for="attend-no">
-              No Podre Asistir
-            </label>
+          <div class="time">
+            <h1 class="time__side">
+              viernes
+            </h1>
+            <div class="time__date">
+              <h3>septiembre</h3>
+              <h1>22</h1>
+              <h3>2023</h3>
+            </div>
+            <h1 class="time__side">
+              10 am
+            </h1>
           </div>
-          <!-- Hidden input field for 'attend' -->
-          <input id="attend" type="hidden" name="attend"
-            value="{{ if eq .WillAttend 1 }}true{{ else }}false{{ end }}" />
+          <div class="direction">
+            <h1 class="direction__label">
+              Dirección:
+            </h1>
+            <a href="https://maps.app.goo.gl/zBzU77FwwwAfkmnQA" target="_blank" class="direction__value">
+              Av los alamos nuevo mexico
+            </a>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="guest-response" class="form-label">Mensaje para los novios</label>
-          <textarea class="form-control" name="response" id="guest-response" rows="3">{{.guest.Response}}</textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          <span class="spinner-border spinner-border-sm htmx-indicator" id="spinner" role="status"
-            aria-hidden="true"></span>
-          Enviar Respuesta
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Agregar el script de Bootstrap JS aquí -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      </div>
+      <div class="down__image">
+        <img class="down" src="https://i.imgur.com/HuGiA0U.png" alt="">
+      </div>
+    </section>
+    <section>
+      <img class="form__up__image" src="https://clipart-library.com/image_gallery2/Gold-PNG-Image.png" alt="">
+      <h1 class="form__title">¿Podras Asistir?</h1>
+      <div class="form">
+        <img class="form__image"
+          src="https://static.vecteezy.com/system/resources/previews/020/964/535/original/watercolor-golden-flowers-bouquet-arrangement-illustration-png.png"
+          alt="">
+        <form hx-post="/guest/{{.guest.ID}}/attend" hx-indicator="#spinner">
+          <div class="form__group">
+            <label class="confirmation__label" for="guest-attend">Confirmación</label>
+            <div class="confirmation__checkbox">
+              <div>
+                <input type="radio" name="flexRadioDefault" id="attend-yes" value="true" {{ if eq .guest.WillAttend 1 }}
+                  checked {{ end }} onclick="podraasistir('true')">
+                <label for="attend-yes">
+                  Si Podre Asistir
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="flexRadioDefault" id="attend-no" value="false" {{ if eq .guest.WillAttend 0 }}
+                  checked {{ end }} onclick="podraasistir('false')">
+                <label for="attend-no">
+                  No Podre Asistir
+                </label>
+              </div>
+            </div>
+            <!-- Hidden input field for 'attend' -->
+            <input id="attend" type="hidden" name="attend"
+              value="{{ if eq .WillAttend 1 }}true{{ else }}false{{ end }}" />
+          </div>
+          <div class="form__response">
+            <label for="guest-response">Mensaje para los novios</label>
+            <textarea name="response" id="guest-response" rows="3">{{.guest.Response}}</textarea>
+          </div>
+          <button type="submit">
+            <span id="spinner" role="status" aria-hidden="true"></span>
+            Enviar Respuesta
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
   <script>
     const podraasistir = async (answer) => {
-      console.log(answer);
       document.getElementById('attend').value = answer;
     }
   </script>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  
 </body>
 
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,600&display=swap");
-
   * {
     margin: 0;
     padding: 0;
@@ -113,197 +117,347 @@
   }
 
   body {
-    display: grid;
     height: 100vh;
-    width: 100vw;
-    justify-items: center;
-    align-items: center;
-    font-family: "Cormorant Garamond", serif;
-    background: #D6D3D4;
+    width: 100%;
+    background-image: url("https://t4.ftcdn.net/jpg/03/51/23/71/360_F_351237160_Mig6uluMcfZXDrKWvWZu86KGhY7zcjKo.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 100vw;
+    color: #614124;
+    font-family: 'Poppins';
   }
 
-  .rsvp-container {
-    margin: 0 auto;
-    height: 700px;
-    width: 500px;
-    background: #D6D3D4;
-    position: relative;
+  main {
+    max-width: 800px;
+    background: #FAF9F5;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    margin: auto;
+  }
+
+  section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .invitation {
+    position: relative
+  }
+
+  .up__image {
+    display: flex;
+    justify-content: end;
+    height: 50%;
+  }
+
+  .up {
+    width: 70%;
+    height: min-content;
+    scale: -1 -1;
+    margin-right: -60px;
+    margin-top: -60px;
     z-index: 1;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   }
 
-  .rsvp-container:after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 600px;
-    left: 50px;
-    top: 50px;
-    background: #fff;
+  .down__image {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    height: 50%;
+  }
+
+  .down {
+    width: 70%;
+    margin-left: -60px;
+    margin-bottom: -60px;
     z-index: 1;
   }
-
-  .rsvp-container:before {
-    content: "";
-    position: absolute;
+</style>
+<style>
+  .content {
     width: 100%;
     height: 100%;
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-1230248-png.png") center center no-repeat;
-    background-size: cover;
-    z-index: 3;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .rsvp-inner-container {
-    position: relative;
-    z-index: 4;
-    padding: 130px;
+  .content__border {
+    border: 3px solid #D08B41;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+  }
+</style>
+<style>
+  .title {
+    font-size: 80px;
+    font-family: "Parisienne";
+    margin: 0;
+    font-weight: 800;
+    z-index: 2;
   }
 
-  h1 {
-    font-size: 28px;
-    font-weight: semi-bold;
-    margin: 30px 0 5px 0;
+  .invitation__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
   }
 
-  h2 {
-    font-size: 18px;
-    margin: 0 0 20px 0;
-    font-weight: normal;
+  .message__contain {
+    margin-top: 30px;
+    margin-bottom: 70px;
   }
 
-  fieldset {
-    border: 0;
-    margin-bottom: 20px;
+  .message {
+    font-family: Arial, sans-serif;
   }
 
-  .full-width label:nth-of-type(1) {
-    display: block;
-    font-size: 18px;
+  .text {
+    font-size: 20px;
+    margin: 12px;
   }
-
-  .full-width input {
-    border: 0;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-    width: 100%;
-    line-height: 28px;
-    font-size: 14px;
-    outline: none;
-    background: transparent;
-  }
-
-  .half-width label {
-    display: inline-block;
-    margin-right: 20px;
-    line-height: 28px;
-    font-size: 18px;
-  }
-
-  .half-width input {
-    border: 0;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-    line-height: 28px;
-    font-size: 14px;
-    outline: none;
-    width: 70px;
+</style>
+<style>
+  .direction {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 15px;
+    gap: 15px;
     text-align: center;
   }
 
-  .checkbox input {
-    border: 2px solid rgba(0, 0, 0, 0.5);
-    height: 28px;
-    width: 28px;
-    background-color: transparent !important;
+  .direction__label {
+    font-size: 20px;
   }
 
-  /* The container */
-  .container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 18px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    line-height: 28px;
+  .direction__value {
+    text-decoration: inherit;
+    color: inherit;
+    z-index: 2;
+    font-size: 17px;
+    text-decoration: underline;
+  }
+</style>
+<style>
+  .time {
+    display: flex;
+    gap: 50px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    align-items: center;
   }
 
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+  .time__side {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 150px;
+    height: 70px;
+    border-top: 3px solid #614124;
+    border-bottom: 3px solid #614124;
   }
 
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 27px;
-    width: 27px;
-    background-color: inherit;
-    border: 2px solid rgba(0, 0, 0, 0.5);
+  .time__date {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
 
-  /* On mouse-over, add a grey background color */
-  .container:hover input~.checkmark {
-    background-color: #ccc;
+  .time__date h3 {
+    font-size: 25px;
   }
 
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked~.checkmark {
-    background-color: inherit;
+  .time__date h1 {
+    font-size: 80px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+</style>
+<style>
+  .form__up__image {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 20px;
   }
 
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
+  .form {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: auto;
+    gap: 0;
+    width: 100%;
   }
 
-  /* Show the checkmark when checked */
-  .container input:checked~.checkmark:after {
-    display: block;
+  .form__container {
+    display: flex;
   }
 
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid rgba(0, 0, 0, 0.5);
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  .form__image {
+    width: 350px;
   }
 
-  button {
-    position: absolute;
-    bottom: 150px;
-    right: 140px;
-    background: transparent;
-    border: none;
+  .form__title {
+    text-align: center;
+    font-size: 40px;
+  }
+
+  .form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .confirmation__checkbox {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+
+  .form__response {
+    display: flex;
+    flex-direction: column;
+  }
+
+  textarea {
+    border: 1px solid #614124;
+    border-radius: 10px;
+    width: 250px;
+    height: 100px;
+    margin-bottom: 20px;
     padding: 5px;
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 22px;
-    outline: none;
   }
 
-  .diet {
-    width: 75% !important;
-  }
-
-  input,
   button {
-    font-family: "Cormorant Garamond", serif;
+    all: unset;
+    background: #614124;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+  }
+</style>
+<style>
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media (max-width: 600px) {
+    .time__side {
+      width: 25vw;
+    }
+
+    .content__border {
+      width: 92vw;
+      height: 92vh;
+    }
+
+    .title {
+      font-size: 50px;
+    }
+
+    .message__contain {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .text {
+      font-size: 16px;
+      padding-top: 5px;
+    }
+
+    .time {
+      gap: 15px;
+    }
+
+    .time__date h1 {
+      font-size: 50px;
+    }
+
+    .time__date h3 {
+      font-size: 20px;
+    }
+
+    .time__side {
+      font-size: 17px;
+      height: 60px;
+    }
+
+    .direction__label {
+      font-size: 17px;
+    }
+
+    .direction__value {
+      font-size: 15px;
+    }
+
+    .down {
+      margin-left: -40px;
+      margin-bottom: -20px;
+    }
+
+    .up {
+      width: 80%;
+      margin-right: -40px;
+      margin-top: -60px;
+    }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media (min-width: 600px) and (max-width: 768px) {
+    .content__border {
+      width: 90%;
+      height: 90%;
+    }
+
+    .title {
+      font-size: 65px;
+    }
+
+    .message__contain {
+      margin-top: 15px;
+      margin-bottom: 45px;
+    }
+
+    .time {
+      gap: 30px;
+    }
+
+    .time__date h1 {
+      font-size: 60px;
+    }
+
+    .time__side {
+      font-size: 20px;
+      height: 60px;
+    }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media (max-width: 992px) {
+    main {
+      max-width: 100%;
+    }
+
+    .form {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .form__image {
+      display: none;
+    }
   }
 </style>
 
