@@ -19,9 +19,11 @@
     <div class="row mt-4 g-4">
         <div class="col-md-9">
             <h1 class="mb-4 text-primary">Lista de Invitados</h1>
-
+            <p>Buscador</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <br>
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered table-sm table-striped">
                     <thead>
                         <tr>
                             <th>Invitado</th>
@@ -35,7 +37,7 @@
                     <tbody id="guest-list">
                         {{ range .guests }}
                         {{ block "guest-list-element" .}}
-                        <tr class="table-{{if eq .User.User "josue"}}primary{{ else }}danger{{end}}">
+                        <tr class="table-{{if eq .User.User "josue"}}secondary{{ else }}danger{{end}}">
                             <td>
                                 <h4 class="mb-1">{{ .Name }} {{ .LastName }}</h4>
                             </td>
@@ -64,7 +66,8 @@
                                 {{end}}
                             </td>
                             <td>
-                                <span class="badge bg-{{if eq .User.User "josue"}}primary{{ else }}danger{{end}}">{{ .User.User }}</span>
+                                <span class="badge bg-{{if eq .User.User " josue"}}primary{{ else }}danger{{end}}">{{
+                                    .User.User }}</span>
                             </td>
                         </tr>
                         {{ end }}
@@ -95,7 +98,7 @@
                 <button type="submit" class="btn btn-primary">
                     <span class="spinner-border spinner-border-sm htmx-indicator" id="spinner" role="status"
                         aria-hidden="true"></span>
-                        Crear Invitación
+                    Crear Invitación
                 </button>
             </form>
         </div>
@@ -133,6 +136,25 @@
     </script>
     <!-- Agregar el script de Bootstrap JS aquí -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var myInput = document.getElementById("myInput");
+            var guestListRows = document.querySelectorAll("#guest-list tr");
+    
+            myInput.addEventListener("keyup", function() {
+                var value = myInput.value.toLowerCase();
+    
+                guestListRows.forEach(function(row) {
+                    var rowData = row.textContent.toLowerCase();
+                    if (rowData.indexOf(value) > -1) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
