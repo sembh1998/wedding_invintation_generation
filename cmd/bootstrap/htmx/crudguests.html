@@ -14,42 +14,67 @@
 
 </head>
 
-<body class="container bg-light">
+<body class="p-2 m-2 bg-light">
 
     <div class="row mt-4 g-4">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h1 class="mb-4 text-primary">Lista de Invitados</h1>
 
-            <ul class="list-group fs-5 me-5" id="guest-list">
-
-                {{ range .guests }}
-                {{ block "guest-list-element" .}}
-                <li class="list-group-item bg-{{if eq .User.User "josue"}}primary{{ else }}secondary{{end}} text-white mb-3 rounded">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="mb-1">{{ .Name }} {{ .LastName }}</h4>
-                            <p class="mb-1">{{ .SpecialMessage }}</p>
-                            <span class="badge bg-{{ if eq .WillAttend 1 }}success{{ else if eq .WillAttend 0 }}danger{{ else }}warning{{ end }}">
-                                {{ if eq .WillAttend 1 }}Si Asistiré{{ else if eq .WillAttend 0 }}No Puedo{{ else }}No Response aún{{ end }}
-                            </span>
-                        </div>
-                        <div class="d-flex flex-column align-items-end">
-                            <button class="btn btn-danger btn-sm mb-2" hx-delete="/delete-guest/{{ .ID }}" hx-target="#guest-list"
-                                hx-swap="beforeend" hx-indicator="#spinner">Eliminar</button>
-                            <button class="btn btn-info btn-sm" onclick="copyCustomURL('/guest/{{ .ID }}')">Copy URL</button>
-                        </div>
-                    </div>
-                    {{if ne .Response ""}}
-                    <p class="mt-2">Respuesta del invitado: <span class="badge bg-info">{{ .Response }}</span></p>
-                    {{end}}
-                    <p class="mt-2">Invitado de: <span class="badge bg-info">{{ .User.User }}</span></p>
-                </li>
-                {{ end }}
-                {{ end }}
-            </ul>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Invitado</th>
+                            <th>Mensaje Especial</th>
+                            <th>Asistencia</th>
+                            <th>Acciones</th>
+                            <th>Respuesta</th>
+                            <th>Invitado de</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guest-list">
+                        {{ range .guests }}
+                        {{ block "guest-list-element" .}}
+                        <tr class="table-{{if eq .User.User "josue"}}primary{{ else }}danger{{end}}">
+                            <td>
+                                <h4 class="mb-1">{{ .Name }} {{ .LastName }}</h4>
+                            </td>
+                            <td>
+                                <p class="mb-1">{{ .SpecialMessage }}</p>
+                            </td>
+                            <td>
+                                <span
+                                    class="badge bg-{{ if eq .WillAttend 1 }}success{{ else if eq .WillAttend 0 }}danger{{ else }}warning{{ end }}">
+                                    {{ if eq .WillAttend 1 }}Si Asistiré{{ else if eq .WillAttend 0 }}No Puedo{{ else
+                                    }}No Response aún{{ end }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column align-items-end">
+                                    <button class="btn btn-danger btn-sm mb-2" hx-delete="/delete-guest/{{ .ID }}"
+                                        hx-target="#guest-list" hx-swap="beforeend"
+                                        hx-indicator="#spinner">Eliminar</button>
+                                    <button class="btn btn-info btn-sm" onclick="copyCustomURL('/guest/{{ .ID }}')">Copy
+                                        URL</button>
+                                </div>
+                            </td>
+                            <td>
+                                {{if ne .Response ""}}
+                                <span class="badge bg-info">{{ .Response }}</span>
+                                {{end}}
+                            </td>
+                            <td>
+                                <span class="badge bg-{{if eq .User.User "josue"}}primary{{ else }}danger{{end}}">{{ .User.User }}</span>
+                            </td>
+                        </tr>
+                        {{ end }}
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h1 class="mb-4 text-primary">Agregar Invitado</h1>
 
             <form hx-post="/add-guest/" hx-target="#guest-list" hx-swap="beforeend" hx-indicator="#spinner">
@@ -63,13 +88,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="guest-special_message" class="form-label">Mensaje de Invitación para el Invitado</label>
-                    <textarea class="form-control" name="special_message" id="guest-special_message" rows="3"></textarea>
+                    <textarea class="form-control" name="special_message" id="guest-special_message"
+                        rows="3"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">
                     <span class="spinner-border spinner-border-sm htmx-indicator" id="spinner" role="status"
                         aria-hidden="true"></span>
-                    Enviar Invitación
+                        Crear Invitación
                 </button>
             </form>
         </div>
