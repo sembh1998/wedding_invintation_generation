@@ -9,8 +9,8 @@
   <script src="https://unpkg.com/htmx.org@1.9.2"
     integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Parisienne">
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Parisienne">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
 
 <body>
@@ -26,14 +26,14 @@
               Josué & Helen
             </h1>
             <div class="message__contain">
-              <h1 class="message">Para: {{.guest.LastName}} {{.guest.Name}}</h1>
-              <h2 class="message text">
+              <h1 class="message pop glow">Para: {{.guest.LastName}} {{.guest.Name}}</h1>
+              <h2 class="message text animate glow">
                 {{ if .guest.SpecialMessage}}{{.guest.SpecialMessage}}{{ else }}Estás invitado a nuestra boda{{
                 end }}
               </h2>
             </div>
           </div>
-          <div class="time">
+          <div class="time pop glow ">
             <h1 class="time__side">
               viernes
             </h1>
@@ -43,7 +43,7 @@
               <h3>2023</h3>
             </div>
             <h1 class="time__side">
-              10 am
+              11 am
             </h1>
           </div>
           <div class="direction">
@@ -51,7 +51,7 @@
               Dirección:
             </h1>
             <a href="https://maps.app.goo.gl/zBzU77FwwwAfkmnQA" target="_blank" class="direction__value">
-              Av los alamos nuevo mexico
+              Villa Cami - Jr. Bolognesi 195, Santa María del Valle
             </a>
           </div>
         </div>
@@ -119,10 +119,10 @@
   body {
     height: 100vh;
     width: 100%;
-    background-image: url("https://t4.ftcdn.net/jpg/03/51/23/71/360_F_351237160_Mig6uluMcfZXDrKWvWZu86KGhY7zcjKo.jpg");
+    background-image: url("https://img.freepik.com/premium-photo/golden-wedding-rings-with-diamond-lie-onwhite-fabric-symbol-love-marriage_105517-354.jpg?w=1380");
     background-repeat: repeat;
     background-attachment: fixed;
-    background-size: 100vw;
+    background-size: 100vw auto;
     color: #614124;
     font-family: 'Poppins';
   }
@@ -158,6 +158,9 @@
     margin-right: -60px;
     margin-top: -60px;
     z-index: 1;
+    animation-duration: 1s;
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
   }
 
   .down__image {
@@ -173,6 +176,84 @@
     margin-left: -60px;
     margin-bottom: -60px;
     z-index: 1;
+    animation-duration: 1s;
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+  }
+
+  @keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+</style>
+<style>
+  .pop {
+    animation-duration: 0.75s;
+    animation-delay: 0.5s;
+    animation-name: animate-fade;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-fill-mode: backwards;
+  }
+
+  .pop.glow {
+    animation-name: animate-glow;
+    animation-timing-function: ease;
+  }
+
+  @keyframes animate-glow {
+    0% {
+      opacity: 0;
+      filter: brightness(3) saturate(3);
+      transform: scale(0.8, 0.8);
+    }
+
+    100% {
+      opacity: 1;
+      filter: brightness(1) saturate(1);
+      transform: scale(1, 1);
+    }
+  }
+
+  .animate {
+    animation-duration: 0.5s;
+    animation-name: animate-fade;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes animate-fade {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  .animate.pop {
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+  }
+
+  @keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
   }
 </style>
 <style>
@@ -300,7 +381,7 @@
     align-items: center;
     flex-direction: row;
     margin: auto;
-    gap: 0;
+    gap: 60px;
     width: 100%;
   }
 
@@ -315,12 +396,20 @@
   .form__title {
     text-align: center;
     font-size: 40px;
+    margin-top: 100px;
   }
 
   .form__group {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-weight: 800;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .confirmation__checkbox {
@@ -349,6 +438,8 @@
     color: white;
     padding: 15px;
     border-radius: 10px;
+    width: 200px;
+    text-align: center;
   }
 </style>
 <style>
@@ -453,6 +544,7 @@
     .form {
       width: 100%;
       justify-content: center;
+      margin-left: 50px;
     }
 
     .form__image {
