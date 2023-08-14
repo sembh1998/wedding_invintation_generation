@@ -21,12 +21,12 @@
       </div>
       <div class="content">
         <div class="content__border">
+          <h1 class="title">
+            Josué & Helen
+          </h1>
           <div class="invitation__content">
-            <h1 class="title">
-              Josué & Helen
-            </h1>
             <div class="message__contain">
-              <h1 class="message pop glow">Para: {{.guest.LastName}} {{.guest.Name}}</h1>
+              <h1 class="message pop glow">Para: {{.guest.Name}} {{.guest.LastName}}</h1>
               <h2 class="message text animate glow">
                 {{ if .guest.SpecialMessage}}{{.guest.SpecialMessage}}{{ else }}Estás invitado a nuestra boda{{
                 end }}
@@ -60,9 +60,12 @@
         <img class="down" src="https://i.imgur.com/HuGiA0U.png" alt="">
       </div>
     </section>
-    <section>
+    <section class="form__section" >
+      <h3>
+        Vuestra presencia es nuestro mejor regalo pero, si queréis tener un detalle con nosotros: xxxx-xxxx-xxxx-xxxx
+      </h3>
       <img class="form__up__image" src="https://clipart-library.com/image_gallery2/Gold-PNG-Image.png" alt="">
-      <h1 class="form__title">¿Podras Asistir?</h1>
+      <h1 class="form__title">¿Contaremos con tu asistencia?</h1>
       <div class="form">
         <img class="form__image"
           src="https://static.vecteezy.com/system/resources/previews/020/964/535/original/watercolor-golden-flowers-bouquet-arrangement-illustration-png.png"
@@ -75,14 +78,14 @@
                 <input type="radio" name="flexRadioDefault" id="attend-yes" value="true" {{ if eq .guest.WillAttend 1 }}
                   checked {{ end }} onclick="podraasistir('true')">
                 <label for="attend-yes">
-                  Si Podre Asistir
+                  Sé, me será posible
                 </label>
               </div>
               <div>
                 <input type="radio" name="flexRadioDefault" id="attend-no" value="false" {{ if eq .guest.WillAttend 0 }}
                   checked {{ end }} onclick="podraasistir('false')">
                 <label for="attend-no">
-                  No Podre Asistir
+                  Lo siento, no podré
                 </label>
               </div>
             </div>
@@ -149,6 +152,7 @@
     display: flex;
     justify-content: end;
     height: 50%;
+    overflow: hidden;
   }
 
   .up {
@@ -156,7 +160,7 @@
     height: min-content;
     scale: -1 -1;
     margin-right: -60px;
-    margin-top: -60px;
+    margin-top: -100px;
     z-index: 1;
     animation-duration: 1s;
     animation-name: animate-pop;
@@ -173,8 +177,8 @@
 
   .down {
     width: 70%;
-    margin-left: -60px;
-    margin-bottom: -60px;
+    margin-left: -80px;
+    margin-bottom: -120px;
     z-index: 1;
     animation-duration: 1s;
     animation-name: animate-pop;
@@ -272,10 +276,12 @@
     border-radius: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     width: 80%;
     height: 80%;
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
 </style>
 <style>
@@ -294,10 +300,6 @@
     z-index: 2;
   }
 
-  .message__contain {
-    margin-top: 30px;
-    margin-bottom: 70px;
-  }
 
   .message {
     font-family: Arial, sans-serif;
@@ -305,7 +307,8 @@
 
   .text {
     font-size: 20px;
-    margin: 12px;
+    margin: 40px;
+    margin-top: 20px;
   }
 </style>
 <style>
@@ -368,21 +371,30 @@
   }
 </style>
 <style>
+  .form__section {
+    padding-top: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .form__section h3 {
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
   .form__up__image {
     width: 300px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
-    margin-bottom: 20px;
   }
 
   .form {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
-    margin: auto;
-    gap: 60px;
-    width: 100%;
+    width: 80%;
   }
 
   .form__container {
@@ -390,19 +402,17 @@
   }
 
   .form__image {
-    width: 350px;
+    width: 300px;
   }
 
   .form__title {
     text-align: center;
     font-size: 40px;
-    margin-top: 100px;
   }
 
   .form__group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
     font-weight: 800;
   }
 
@@ -426,7 +436,7 @@
   textarea {
     border: 1px solid #614124;
     border-radius: 10px;
-    width: 250px;
+    width: 100%;
     height: 100px;
     margin-bottom: 20px;
     padding: 5px;
@@ -440,6 +450,7 @@
     border-radius: 10px;
     width: 200px;
     text-align: center;
+    margin: auto;
   }
 </style>
 <style>
@@ -503,6 +514,18 @@
       margin-right: -40px;
       margin-top: -60px;
     }
+
+    .form__section {
+      padding-top: 0;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    .form {
+      width: 80%;
+    }
   }
 
   /* Medium devices (landscape tablets, 768px and up) */
@@ -542,9 +565,8 @@
     }
 
     .form {
-      width: 100%;
+      width: 80%;
       justify-content: center;
-      margin-left: 50px;
     }
 
     .form__image {
