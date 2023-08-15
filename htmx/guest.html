@@ -5,6 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Invitación para la boda de Josue Maquera y Helen, matrimonio" />
+  <meta property="og:title" content="Invitacion de {{.guest.Name}}" />
+  <meta property="og:url" content="https://miboda.josuemaquera.me/guest/{{.guest.ID}}/" />
+  <meta property="og:description" content="Estás invitado a nuestra boda" />
+  <meta property="og:image" content="https://css.brilliantearth.com/static/img/gateway/engagement-rings/ir339/moissanite-rings-xs.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/icondrawer/gifts/512/rings-icon.png">
   <title>Invitacion de {{.guest.Name}}</title>
   <script src="https://unpkg.com/htmx.org@1.9.2"
     integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
@@ -22,7 +30,7 @@
       <div class="content">
         <div class="content__border">
           <h1 class="title">
-            Josué & Helen
+            Josue & Helen
           </h1>
           <div class="invitation__content">
             <div class="message__contain">
@@ -60,10 +68,7 @@
         <img class="down" src="https://i.imgur.com/HuGiA0U.png" alt="">
       </div>
     </section>
-    <section class="form__section" >
-      <h3>
-        Vuestra presencia es nuestro mejor regalo pero, si queréis tener un detalle con nosotros: xxxx-xxxx-xxxx-xxxx
-      </h3>
+    <section class="form__section">
       <img class="form__up__image" src="https://clipart-library.com/image_gallery2/Gold-PNG-Image.png" alt="">
       <h1 class="form__title">¿Contaremos con tu asistencia?</h1>
       <div class="form">
@@ -78,7 +83,7 @@
                 <input type="radio" name="flexRadioDefault" id="attend-yes" value="true" {{ if eq .guest.WillAttend 1 }}
                   checked {{ end }} onclick="podraasistir('true')">
                 <label for="attend-yes">
-                  Sé, me será posible
+                  Sí, me será posible
                 </label>
               </div>
               <div>
@@ -102,6 +107,22 @@
             Enviar Respuesta
           </button>
         </form>
+      </div>
+      <h3 class="bottom" >
+        Vuestra presencia es nuestro mejor regalo pero, si queréis tener un detalle con nosotros:
+      </h3>
+      <div>
+        <h4>Yape: 920150812</h4>
+        <h4>Plin: 920150812</h4>
+        <hr>
+        <h4>Cuenta BCP: 19172498437042.</h4>
+        <h4>Cuenta BCP interbancaria: 19172498437042</h4>
+        <hr>
+        <h4>Cuenta BBVA: 0011-0814-0233800444</h4>
+        <h4>Cuenta BBVA interbancaria: 011-814-000233800444-19</h4>
+        <hr>
+        <h4>Cuenta Interbank: 8983333591750</h4>
+        <h4>Cuenta Interbank interbancaria: 00389801333359175045</h4>
       </div>
     </section>
   </main>
@@ -372,17 +393,19 @@
 </style>
 <style>
   .form__section {
-    padding-top: 130px;
+    padding-top: 150px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    padding-bottom: 50px;
   }
 
-  .form__section h3 {
+  .form__section h3,h4 {
     text-align: center;
     margin-left: 40px;
     margin-right: 40px;
   }
+
   .form__up__image {
     width: 300px;
     margin-left: auto;
@@ -451,6 +474,11 @@
     width: 200px;
     text-align: center;
     margin: auto;
+  }
+
+  .bottom {
+    margin-top: 100px;
+    padding-bottom: 15px;
   }
 </style>
 <style>
