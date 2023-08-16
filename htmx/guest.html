@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Invitación para la boda de Josue Maquera y Helen, matrimonio" />
-  <meta property="og:title" content="Invitacion de {{.guest.Name}}" />
+  <meta property="og:title" content="Invitacion de {{.guest.Name}} {{.guest.LastName}}" />
   <meta property="og:url" content="https://miboda.josuemaquera.me/guest/{{.guest.ID}}/" />
-  <meta property="og:description" content="Estás invitado a nuestra boda" />
+  <meta property="og:description" content="Estás invitado a la boda de Josue y Helen" />
   <meta property="og:image" content="https://css.brilliantearth.com/static/img/gateway/engagement-rings/ir339/moissanite-rings-xs.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
-  <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/icondrawer/gifts/512/rings-icon.png">
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4933/4933885.png">
   <title>Invitacion de {{.guest.Name}}</title>
   <script src="https://unpkg.com/htmx.org@1.9.2"
     integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
@@ -123,6 +123,8 @@
         <hr>
         <h4>Cuenta Interbank: 8983333591750</h4>
         <h4>Cuenta Interbank interbancaria: 00389801333359175045</h4>
+        <hr>
+        <h4>(Todas las cuentas están a nombre Josue Enrique Maquera Tello)</h4>
       </div>
     </section>
   </main>
@@ -330,6 +332,7 @@
     font-size: 20px;
     margin: 40px;
     margin-top: 20px;
+    text-align: justify;
   }
 </style>
 <style>
@@ -398,6 +401,7 @@
     align-items: center;
     justify-content: space-evenly;
     padding-bottom: 50px;
+    height: 120vh;
   }
 
   .form__section h3,h4 {
@@ -478,7 +482,6 @@
 
   .bottom {
     margin-top: 100px;
-    padding-bottom: 15px;
   }
 </style>
 <style>
