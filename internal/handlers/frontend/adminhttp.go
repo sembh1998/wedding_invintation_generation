@@ -63,7 +63,7 @@ func (h *HTTPHandler) Login(c *gin.Context) {
 	lastFailedTime, exists := loginTracker.lastFailed[ip]
 	if exists && time.Since(lastFailedTime) < loginTracker.timeout {
 		log.Printf("Login failed for user %s from IP %s. Too many attempts. Remaining time: %v", req.Username, ip, loginTracker.timeout-time.Since(lastFailedTime))
-		c.JSON(http.StatusTooManyRequests, gin.H{"error": "Too many login attempts. Please try again later."})
+		c.String(http.StatusTooManyRequests, "<div class=\"error-too-many-attempts-message\">Has superado el limite de intentos, intenta mas tarde.</div>")
 		return
 	}
 
@@ -77,7 +77,7 @@ func (h *HTTPHandler) Login(c *gin.Context) {
 	if exists && attempts >= loginTracker.maxFailed {
 		loginTracker.lastFailed[ip] = time.Now()
 		log.Printf("Max failed login attempts reached for user %s from IP %s. Blocking for %v", req.Username, ip, loginTracker.timeout.String())
-		c.JSON(http.StatusTooManyRequests, gin.H{"error": "Too many login attempts. Please try again later."})
+		c.String(http.StatusTooManyRequests, "<div class=\"error-too-many-attempts-message\">Has superado el limite de intentos, intenta mas tarde.</div>")
 		return
 	}
 
@@ -86,7 +86,7 @@ func (h *HTTPHandler) Login(c *gin.Context) {
 		attempts++
 		loginTracker.attempts[ip] = attempts
 		log.Printf("Login failed for user %s from IP %s. %d attempts so far.", req.Username, ip, attempts)
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.String(http.StatusUnauthorized, "<div class=\"error-user-or-pass-message\">Usuario o contraseña incorrectos.</div>")
 		return
 	}
 
