@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sembh1998/wedding_invitation_generation/cmd/bootstrap"
@@ -50,6 +52,15 @@ func main() {
 	frontendHandler := frontend.New(guestService, userService)
 
 	router := gin.Default()
+
+	// Add a middleware to handle 404 responses
+	router.NoRoute(func(c *gin.Context) {
+		// Select a random joke
+		randomIndex := rand.Intn(len(bootstrap.Jokes))
+		randomJoke := bootstrap.Jokes[randomIndex]
+
+		c.String(http.StatusNotFound, randomJoke)
+	})
 
 	router.GET("/", frontendHandler.LoginHTMX)
 	router.POST("/login", frontendHandler.Login)

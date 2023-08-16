@@ -2,9 +2,11 @@ package frontend
 
 import (
 	"html/template"
+	"math/rand"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sembh1998/wedding_invitation_generation/cmd/bootstrap"
 	"github.com/sembh1998/wedding_invitation_generation/internal/core/domain"
 )
 
@@ -54,7 +56,11 @@ func (h *HTTPHandler) FetchGuestHTMX(c *gin.Context) {
 	id := c.Param("id")
 	guest, err := h.guestSrv.FetchGuest(id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		// Select a random joke
+		randomIndex := rand.Intn(len(bootstrap.Jokes))
+		randomJoke := bootstrap.Jokes[randomIndex]
+
+		c.String(http.StatusNotFound, randomJoke)
 		return
 	}
 	data := map[string]domain.Guest{
