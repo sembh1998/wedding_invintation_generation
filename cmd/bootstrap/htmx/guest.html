@@ -9,8 +9,7 @@
   <meta property="og:title" content="Invitacion de {{.guest.Name}} {{.guest.LastName}}" />
   <meta property="og:url" content="https://miboda.josuemaquera.me/guest/{{.guest.ID}}/" />
   <meta property="og:description" content="Estás invitado a la boda de Josue y Helen" />
-  <meta property="og:image"
-    content="https://i.imgur.com/cZuxvQz.jpeg" />
+  <meta property="og:image" content="https://i.imgur.com/cZuxvQz.jpeg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4933/4933885.png">
@@ -160,7 +159,7 @@
         <hr>
         <h4>Cuenta Banco de la Nación: 045 8021 2072</h4>
       </div>
-      <a href="/gift-preferences" target="_blank" class="gifts__considerations" >Consideraciones para los regalos</a>
+      <a href="/gift-preferences" target="_blank" class="gifts__considerations">Consideraciones para los regalos</a>
     </section>
   </main>
   <script>
@@ -196,28 +195,31 @@
   }
 
   section {
-    height: 100vh;
+    height: fit-content;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
 
   .invitation {
-    position: relative
+    position: relative;
+    padding-top: 5vh;
   }
 
   .up__image {
+    position: absolute;
     display: flex;
     justify-content: end;
-    height: 50%;
+    top: 0;
+    right: 0;
+    margin-top: -50px;
+    margin-right: -60px;
   }
 
   .up {
     width: 70%;
     height: min-content;
     scale: -1 -1;
-    margin-right: -60px;
-    margin-top: -100px;
     animation-duration: 1s;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
@@ -230,12 +232,15 @@
     align-items: start;
     justify-content: end;
     height: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: -70px;
+    margin-bottom: -90px;
   }
 
   .down {
     width: 70%;
-    margin-left: -80px;
-    margin-bottom: -160px;
     z-index: 1;
     animation-duration: 1s;
     animation-name: animate-pop;
@@ -320,8 +325,7 @@
 <style>
   .content {
     width: 100%;
-    height: 100%;
-    position: absolute;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -336,31 +340,17 @@
     justify-content: space-evenly;
     align-items: center;
     width: 80%;
-    height: 90%;
-    padding-bottom: 20px;
-  }
-
-  @media (max-height: 1000px) {
-    .content__border {
-      height: 95%;
-    }
-
-    .up {
-      margin-top: -120px;
-      margin-right: -100px;
-    }
-
-    .down {
-      margin-bottom: -150px;
-      margin-left: -150px;
-    }
+    height: fit-content;
+    padding-bottom: 40px;
+    gap: 30px;
   }
 </style>
 <style>
   .for {
     text-align: start;
     width: 95%;
-    margin-top: -10px;
+    margin-top: 10px;
+    z-index: 2;
   }
 
   .header {
@@ -413,32 +403,9 @@
 
   .text {
     font-size: 20px;
-    margin: 40px;
-    margin-top: 20px;
     text-align: justify;
-  }
-</style>
-<style>
-  .direction {
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
-    font-size: 15px;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .direction__label {
-    font-size: 20px;
-  }
-
-  .direction__value {
-    text-decoration: inherit;
-    color: inherit;
-    z-index: 2;
-    font-size: 20px;
-    text-decoration: underline;
-    font-weight: 800;
+    margin-left: 40px;
+    margin-right: 40px;
   }
 </style>
 <style>
@@ -446,7 +413,6 @@
     display: flex;
     gap: 50px;
     text-transform: uppercase;
-    margin-bottom: 40px;
     align-items: center;
   }
 
@@ -476,6 +442,28 @@
     font-size: 80px;
     margin-top: -20px;
     margin-bottom: -20px;
+  }
+</style>
+<style>
+  .direction {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .direction__label {
+    font-size: 20px;
+  }
+
+  .direction__value {
+    text-decoration: inherit;
+    color: inherit;
+    z-index: 2;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: 800;
   }
 </style>
 <style>
@@ -584,9 +572,13 @@
       width: 25vw;
     }
 
+    .invitation { 
+      padding-top: 7vh;
+    }
+
     .content__border {
       width: 92vw;
-      height: 92vh;
+      padding-bottom: 8px;
     }
 
     .title {
@@ -595,12 +587,13 @@
 
     .message__contain {
       margin-top: 10px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .text {
       font-size: 16px;
       padding-top: 5px;
+      margin: 10px;
     }
 
     .time {
@@ -608,7 +601,7 @@
     }
 
     .time__date h1 {
-      font-size: 50px;
+      font-size: 40px;
     }
 
     .time__date h3 {
@@ -617,7 +610,7 @@
 
     .time__side {
       font-size: 17px;
-      height: 60px;
+      height: 50px;
     }
 
     .direction__label {
@@ -628,19 +621,18 @@
       font-size: 15px;
     }
 
-    .down {
-      margin-left: -40px;
-      margin-bottom: -20px;
+    .up__image {
+      margin-top: -50px;
+      margin-right: -140px;      
     }
 
-    .up {
-      width: 80%;
-      margin-right: -40px;
-      margin-top: -60px;
+    .down__image {
+      margin-left: -140px;
+      margin-bottom: -100px;
     }
 
     .form__section {
-      padding-top: 0;
+      padding-top: 120px;
     }
 
     textarea {
@@ -649,6 +641,24 @@
 
     .form {
       width: 80%;
+    }
+
+    .company {
+      font-size: 25px;
+    }
+
+    .parts div h3 {
+      font-size: 17px;
+    }
+
+    .we {
+      font-size: 25px;
+    }
+
+    .form__title {
+      font-size: 30px;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
   }
 
@@ -687,6 +697,11 @@
     .time__side {
       font-size: 20px;
       height: 60px;
+    }
+
+    .direction__value {
+      margin-left: 50px;
+      margin-right: 50px;
     }
   }
 
