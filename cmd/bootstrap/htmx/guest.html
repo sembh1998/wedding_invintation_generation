@@ -9,7 +9,8 @@
   <meta property="og:title" content="Invitacion de {{.guest.Name}} {{.guest.LastName}}" />
   <meta property="og:url" content="https://miboda.josuemaquera.me/guest/{{.guest.ID}}/" />
   <meta property="og:description" content="Estás invitado a la boda de Josue y Helen" />
-  <meta property="og:image" content="https://css.brilliantearth.com/static/img/gateway/engagement-rings/ir339/moissanite-rings-xs.jpg" />
+  <meta property="og:image"
+    content="https://css.brilliantearth.com/static/img/gateway/engagement-rings/ir339/moissanite-rings-xs.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4933/4933885.png">
@@ -29,9 +30,36 @@
       </div>
       <div class="content">
         <div class="content__border">
-          <h1 class="title">
-            Josue & Helen
-          </h1>
+          <div class="header">
+            <h4 class="title we">
+              Nosotros
+            </h4>
+            <h1 class="title">
+              Josue & Helen
+            </h1>
+          </div>
+          <div>
+
+            <div class="parents">
+              <h4 class="title company">
+                Con la bendición de Dios y de nuestros padres
+              </h4>
+              <div class="parts">
+                <div>
+                  <h3>
+                    David A. Maquera Lupaca
+                  </h3>
+                  <h3>
+                    Milka N. Tello Villavicencio
+                  </h3>
+                </div>
+                <div>
+                  <h3>Alcides Trujillo Simón</h3>
+                  <h3>Silvia R. Saldaña Mosquera</h3>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="invitation__content">
             <div class="message__contain">
               <h1 class="message pop glow">Para: {{.guest.Name}} {{.guest.LastName}}</h1>
@@ -108,10 +136,13 @@
           </button>
         </form>
       </div>
-      <h3 class="bottom" >
+      <h3 class="bottom">
         Vuestra presencia es nuestro mejor regalo pero, si queréis tener un detalle con nosotros:
       </h3>
+      <a href="/gift-preferences" target="_blank">Consideraciones para los regalos</a>
       <div>
+        <h4>A nombre de Josue Enrique Maquera Tello</h4>
+        <hr>
         <h4>Yape: 920150812</h4>
         <h4>Plin: 920150812</h4>
         <hr>
@@ -123,8 +154,12 @@
         <hr>
         <h4>Cuenta Interbank: 8983333591750</h4>
         <h4>Cuenta Interbank interbancaria: 00389801333359175045</h4>
+        <br>
+        <h4>A nombre de Helen Roxana Alvarado Saldaño</h4>
         <hr>
-        <h4>(Todas las cuentas están a nombre Josue Enrique Maquera Tello)</h4>
+        <h4>Yape: 938933421</h4>
+        <hr>
+        <h4>Cuenta Banco de la Nación: 045 8021 2072</h4>
       </div>
     </section>
   </main>
@@ -175,7 +210,6 @@
     display: flex;
     justify-content: end;
     height: 50%;
-    overflow: hidden;
   }
 
   .up {
@@ -184,7 +218,6 @@
     scale: -1 -1;
     margin-right: -60px;
     margin-top: -100px;
-    z-index: 1;
     animation-duration: 1s;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
@@ -201,7 +234,7 @@
   .down {
     width: 70%;
     margin-left: -80px;
-    margin-bottom: -120px;
+    margin-bottom: -160px;
     z-index: 1;
     animation-duration: 1s;
     animation-name: animate-pop;
@@ -302,18 +335,59 @@
     justify-content: space-evenly;
     align-items: center;
     width: 80%;
-    height: 80%;
+    height: 90%;
     padding-bottom: 20px;
     padding-top: 20px;
   }
+
+  @media (max-height: 1000px) {
+    .content__border {
+      height: 95%;
+    }
+
+    .up {
+      margin-top: -120px;
+      margin-right: -100px;
+    }
+
+    .down {
+      margin-bottom: -150px;
+      margin-left: -150px;
+    }
+  }
 </style>
 <style>
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
   .title {
-    font-size: 80px;
+    font-size: 70px;
     font-family: "Parisienne";
     margin: 0;
     font-weight: 800;
     z-index: 2;
+  }
+
+  .we {
+    font-size: 35px;
+    margin-bottom: -20px;
+  }
+
+  .parts {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .parts div h3 {
+    text-align: center;
+  }
+
+  .company {
+    font-size: 30px;
+    margin-right: 40px;
+    margin-left: 40px;
   }
 
   .invitation__content {
@@ -353,8 +427,9 @@
     text-decoration: inherit;
     color: inherit;
     z-index: 2;
-    font-size: 17px;
+    font-size: 20px;
     text-decoration: underline;
+    font-weight: 800;
   }
 </style>
 <style>
@@ -401,10 +476,11 @@
     align-items: center;
     justify-content: space-evenly;
     padding-bottom: 50px;
-    height: 120vh;
+    height: fit-content;
   }
 
-  .form__section h3,h4 {
+  .form__section h3,
+  h4 {
     text-align: center;
     margin-left: 40px;
     margin-right: 40px;
@@ -568,6 +644,14 @@
 
     .title {
       font-size: 65px;
+    }
+
+    .we {
+      font-size: 35px;
+    }
+
+    .company {
+      font-size: 35px;
     }
 
     .message__contain {
