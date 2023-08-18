@@ -76,6 +76,9 @@ func main() {
 	//post attend
 	router.POST("/guest/:id/attend", frontendHandler.AttendConfirmation)
 
+	//gift-preferences
+	router.GET("/gift-preferences", frontendHandler.GiftPreferencesHTMX)
+
 	v1 := router.Group("/api/v1")
 
 	v1.POST("/login", userHandler.Login)
@@ -89,5 +92,5 @@ func main() {
 	//AttendConfirmation
 	v1.PUT("/guest/:id/attend", guestHandler.AttendConfirmation)
 
-	router.Run(":80")
+	router.Run(":8080")
 }

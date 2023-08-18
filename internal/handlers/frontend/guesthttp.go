@@ -90,3 +90,10 @@ func (h *HTTPHandler) AttendConfirmation(c *gin.Context) {
 	}
 	c.Header("HX-Redirect", "/guest/"+id)
 }
+
+// FetchGuest
+func (h *HTTPHandler) GiftPreferencesHTMX(c *gin.Context) {
+
+	tmpl := template.Must(template.ParseFiles("htmx/gift-preferences.html"))
+	tmpl.Execute(c.Writer, nil)
+}

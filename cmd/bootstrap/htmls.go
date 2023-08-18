@@ -16,8 +16,11 @@ var guestFileByte []byte
 //go:embed htmx/login.html
 var loginFileByte []byte
 
+//go:embed htmx/gift-preferences.html
+var giftPreferencesFileByte []byte
+
 func ExtractEmbeddedFile() error {
-	filenames := []string{"crudguests.html", "guest.html", "login.html"}
+	filenames := []string{"crudguests.html", "guest.html", "login.html", "gift-preferences.html"}
 	// Create the fonts directory if it doesn't exist
 	err := os.MkdirAll("htmx", 0755)
 	if err != nil {
@@ -40,6 +43,8 @@ func ExtractEmbeddedFile() error {
 			fileByte = guestFileByte
 		case "login.html":
 			fileByte = loginFileByte
+		case "gift-preferences.html":
+			fileByte = giftPreferencesFileByte
 		}
 
 		// Write the file
