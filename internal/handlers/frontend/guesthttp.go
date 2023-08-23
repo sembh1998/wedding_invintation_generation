@@ -72,7 +72,7 @@ func (h *HTTPHandler) FetchGuestHTMX(c *gin.Context) {
 
 type GuestConfirmationRequest struct {
 	Attend   string `json:"attend" binding:"required" form:"attend"`
-	Response string `json:"response" binding:"required" form:"response"`
+	Response string `json:"response" form:"response"`
 }
 
 // AttendConfirmation
