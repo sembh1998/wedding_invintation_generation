@@ -30,6 +30,7 @@
                         <tr>
                             <th>Invitado</th>
                             <th>Mensaje Especial</th>
+                            <th>Cantidad por invitación</th>
                             <th>Asistencia</th>
                             <th>Respuesta</th>
                             <th>Invitado de</th>
@@ -45,6 +46,9 @@
                             </td>
                             <td>
                                 <p class="mb-1">{{ .SpecialMessage }}</p>
+                            </td>
+                            <td>
+                                <p class="mb-1">{{ .AttendanceLimit }}</p>
                             </td>
                             <td>
                                 <h4>
@@ -99,6 +103,12 @@
                     <label for="guest-last_name" class="form-label">Apellidos</label>
                     <input type="text" name="last_name" id="guest-last_name" class="form-control" />
                 </div>
+
+                <div class="mb-3">
+                    <label for="guest-last_name" class="form-label">Cantidad por invitación</label>
+                    <input type="number" name="attendance_limit" id="guest-last_name" class="form-control" />
+                </div>
+
                 <div class="mb-3">
                     <label for="guest-special_message" class="form-label">Mensaje de Invitación para el Invitado</label>
                     <textarea class="form-control" name="special_message" id="guest-special_message"
