@@ -2,7 +2,6 @@ package bootstrap
 
 import (
 	"embed"
-	_ "embed"
 	"fmt"
 	"io/fs"
 	"log"
