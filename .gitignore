@@ -1,4 +1,6 @@
 main.exe
 *.exe
 wedding.rar
-htmx
+/htmx/
+*.csv
+/assets/

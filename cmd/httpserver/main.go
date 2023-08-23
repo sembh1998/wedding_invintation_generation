@@ -35,6 +35,10 @@ func main() {
 		panic(err)
 	}
 
+	if err := bootstrap.ExtractAssetsFolder(); err != nil {
+		panic(err)
+	}
+
 	connstring := fmt.Sprintf(format, user, password, host, port, dbname)
 	mysqlgorm, err := gorm.Open(mysql.Open(connstring), &gorm.Config{})
 	if err != nil {
@@ -69,7 +73,6 @@ func main() {
 	router.POST("/add-guest", tokenrequired.TokenRequiredMiddleware(), frontendHandler.AddGuest)
 	//delete delete-guest
 	router.DELETE("/delete-guest/:id", tokenrequired.TokenRequiredMiddleware(), frontendHandler.DeleteGuest)
-
 	//get guest
 	router.GET("/guest/:id", frontendHandler.FetchGuestHTMX)
 
@@ -79,6 +82,10 @@ func main() {
 	//gift-preferences
 	router.GET("/gift-preferences", frontendHandler.GiftPreferencesHTMX)
 
+	//assets
+	router.StaticFS("/assets", http.Dir("assets"))
+
+	//api v1
 	v1 := router.Group("/api/v1")
 
 	v1.POST("/login", userHandler.Login)
