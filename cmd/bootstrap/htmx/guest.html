@@ -31,7 +31,8 @@
       <div class="content">
         <div class="content__border">
           <h3 class="for">
-            {{.guest.Name}} {{.guest.LastName}} - Para {{.guest.AttendanceLimit}} persona{{ if gt .guest.AttendanceLimit 1}}s{{ end }}
+            {{.guest.Name}} {{.guest.LastName}} - Para {{.guest.AttendanceLimit}} persona{{ if gt .guest.AttendanceLimit
+            1}}s{{ end }}
           </h3>
           <div class="header">
             <h4 class="title we">Nosotros</h4>
@@ -166,15 +167,12 @@
             method: "POST",
             body: formData,
           })
-            .then((response) => response.json())
-            .then((data) => {
-              Swal.fire({
-                title: "Gracias por tu respuesta",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            })
+            .then(() => Swal.fire({
+              title: "Gracias por tu respuesta",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500
+            }))
             .catch((error) => {
               Swal.fire({
                 title: "Hubo un Error",
