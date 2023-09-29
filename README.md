@@ -48,35 +48,41 @@ Before you begin, ensure you have the following prerequisites installed:
    go mod tidy
    ```
 
-## Folder structure
-
+<details>
+<summary>Folder Structure</summary>
+<pre>
+<code>
+Folder structure
 ├── cmd/
-│ ├── bootstrap/
-│ │ ├── assets/
-│ │ ├── embeds.go
-│ │ ├── htmx/
-│ │ └── jokes.go
-│ └── httpserver/
-│ └── main.go
+│   ├── bootstrap/
+│   │   ├── assets/
+│   │   ├── embeds.go
+│   │   ├── htmx/
+│   │   └── jokes.go
+│   └── httpserver/
+│       └── main.go
 ├── Dockerfile
 ├── go.mod
 ├── go.sum
 ├── internal/
-│ ├── core/
-│ │ ├── domain/
-│ │ ├── ports/
-│ │ └── services/
-│ ├── handlers/
-│ │ ├── frontend/
-│ │ ├── guesthdl/
-│ │ ├── tokenrequired/
-│ │ └── userhdl/
-│ └── repositories/
-│ ├── guestsrepo/
-│ └── usersrepo/
+│   ├── core/
+│   │   ├── domain/
+│   │   ├── ports/
+│   │   └── services/
+│   ├── handlers/
+│   │   ├── frontend/
+│   │   ├── guesthdl/
+│   │   ├── tokenrequired/
+│   │   └── userhdl/
+│   └── repositories/
+│       ├── guestsrepo/
+│       └── usersrepo/
 ├── mdcontent/
-│ └── screenshot.png
+│   └── screenshot.png
 └── README.md
+</code>
+</pre>
+</details>
 
 ## Usage
 ### Running the Application
