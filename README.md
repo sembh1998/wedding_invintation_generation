@@ -1,5 +1,6 @@
 # Wedding Guest Management System
 
+![Wedding Guest Management System](mdcontent/screenshot.png)
 Welcome to the Wedding Guest Management System! This application allows you to generate individual links for wedding guests to confirm their attendance and leave messages for the host. It is built using Golang, follows the hexagonal architecture pattern, and utilizes MySQL with GORM for data storage.
 
 ## Table of Contents
@@ -11,6 +12,7 @@ Welcome to the Wedding Guest Management System! This application allows you to g
 - [Usage](#usage)
   - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
+- [Docker Deployment](#docker-deployment)
 - [Contributing](#contributing)
   - [Special Thanks](#special-thanks)
 - [License](#license)
@@ -86,6 +88,22 @@ API v1 Endpoints
 - `PUT /api/v1/guest/{id}/attend`: Confirm attendance for a guest via API.
 
 Note: Some routes require authentication, and you should login to use it
+
+## Docker Deployment
+
+A Dockerfile is provided in the repository to simplify deployment. You can build a Docker image and run the application within a container. Follow these steps:
+
+1. Build the Docker image:
+
+   ```shell
+   docker build -t wedding-guest-app .
+   ```
+2. Run the Docker container::
+
+   ```shell
+   docker run -p 8080:8080 wedding-guest-app
+   ```
+   The application will be accessible at http://localhost:8080
 
 ## Contributing
 
