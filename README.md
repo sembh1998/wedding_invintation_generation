@@ -50,12 +50,33 @@ Before you begin, ensure you have the following prerequisites installed:
 
 ## Folder structure
 
-- `cmd/httpserver/`: Main application entry point.
-- `internal/`:  Core application logic.
-- `public/`: Stores static assets like HTML, CSS, and client-side JavaScript files.
-- `routes/`: Defines API routes and their corresponding controllers.
-- `models/`: Holds models
-- `app.ts`: Main application file.
+├── cmd/
+│ ├── bootstrap/
+│ │ ├── assets/
+│ │ ├── embeds.go
+│ │ ├── htmx/
+│ │ └── jokes.go
+│ └── httpserver/
+│ └── main.go
+├── Dockerfile
+├── go.mod
+├── go.sum
+├── internal/
+│ ├── core/
+│ │ ├── domain/
+│ │ ├── ports/
+│ │ └── services/
+│ ├── handlers/
+│ │ ├── frontend/
+│ │ ├── guesthdl/
+│ │ ├── tokenrequired/
+│ │ └── userhdl/
+│ └── repositories/
+│ ├── guestsrepo/
+│ └── usersrepo/
+├── mdcontent/
+│ └── screenshot.png
+└── README.md
 
 ## Usage
 ### Running the Application
