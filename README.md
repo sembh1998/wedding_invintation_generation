@@ -1,6 +1,7 @@
 # Wedding Guest Management System
 
 ![Wedding Guest Management System](mdcontent/screenshot.png)
+
 Welcome to the Wedding Guest Management System! This application allows you to generate individual links for wedding guests to confirm their attendance and leave messages for the host. It is built using Golang, follows the hexagonal architecture pattern, and utilizes MySQL with GORM for data storage.
 
 ## Table of Contents
