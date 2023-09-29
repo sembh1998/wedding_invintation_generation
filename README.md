@@ -52,7 +52,6 @@ Before you begin, ensure you have the following prerequisites installed:
 <summary>Folder Structure</summary>
 <pre>
 <code>
-Folder structure
 ├── cmd/
 │   ├── bootstrap/
 │   │   ├── assets/
