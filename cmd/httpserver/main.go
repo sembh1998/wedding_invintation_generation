@@ -90,10 +90,10 @@ func main() {
 
 	v1.POST("/login", userHandler.Login)
 
-	v1.POST("/guest", tokenrequired.TokenRequiredMiddleware(), guestHandler.CreateGuest)
-	v1.GET("/guest", tokenrequired.TokenRequiredMiddleware(), guestHandler.FindGuests)
-	v1.PUT("/guest/:id", tokenrequired.TokenRequiredMiddleware(), guestHandler.UpdateGuest)
-	v1.DELETE("/guest/:id", tokenrequired.TokenRequiredMiddleware(), guestHandler.DeleteGuest)
+	v1.POST("/guest", tokenrequired.BearerTokenRequiredMiddleware(), guestHandler.CreateGuest)
+	v1.GET("/guest", tokenrequired.BearerTokenRequiredMiddleware(), guestHandler.FindGuests)
+	v1.PUT("/guest/:id", tokenrequired.BearerTokenRequiredMiddleware(), guestHandler.UpdateGuest)
+	v1.DELETE("/guest/:id", tokenrequired.BearerTokenRequiredMiddleware(), guestHandler.DeleteGuest)
 
 	v1.GET("/guest/:id", guestHandler.FetchGuest)
 	//AttendConfirmation

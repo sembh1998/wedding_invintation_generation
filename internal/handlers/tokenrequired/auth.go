@@ -29,3 +29,33 @@ func TokenRequiredMiddleware() gin.HandlerFunc {
 
 	}
 }
+
+func BearerTokenRequiredMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "authorization header not found"})
+			return
+		}
+
+		// Expected format: "Bearer <token>"
+		const prefix = "Bearer "
+		if len(authHeader) <= len(prefix) || authHeader[:len(prefix)] != prefix {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "invalid authorization header format"})
+			return
+		}
+
+		tokenStr := authHeader[len(prefix):]
+
+		payload, err := token.NewTokenizer().Maker.VerifyToken(tokenStr)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.Set("user_id", payload.UserID)
+		c.Set("username", payload.Username)
+
+		c.Next()
+	}
+}
