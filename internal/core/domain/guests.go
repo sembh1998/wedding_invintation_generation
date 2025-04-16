@@ -2,6 +2,8 @@ package domain
 
 type Guest struct {
 	BaseModel
+	ID              string `json:"id" form:"id"`
+	Order           int    `form:"order"  gorm:"primary_key;column:order"`
 	Name            string `form:"name"`
 	LastName        string `form:"last_name"`
 	WillAttend      int    `form:"will_attend"`
